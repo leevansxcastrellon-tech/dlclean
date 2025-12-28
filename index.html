@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DLClean Panamá | Limpieza Profesional de Tapicería</title>
+    <meta name="description" content="Servicios de limpieza profesional en Panamá. Especialistas en lavado de sofás, colchones, alfombras y autos. Cotiza gratis por WhatsApp.">
+    <meta name="keywords" content="limpieza de tapicería en Panamá, limpieza de colchones, limpieza de sofás, lavado de autos, DL Clean, Arraiján">
+    
+    <!-- Fuentes Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Iconos (FontAwesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Configuración de Colores Personalizada -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',    /* Azul oscuro serio */
+                            primary: '#0284c7', /* Azul vibrante confiable */
+                            light: '#e0f2fe',   /* Azul muy claro fondo */
+                            accent: '#0d9488',  /* Turquesa limpieza */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Estilos personalizados adicionales */
+        html { scroll-behavior: smooth; }
+        
+        .hero-overlay {
+            background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.6));
+        }
+
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Animaciones de entrada */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Tarjetas de precios */
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Botón flotante animado */
+        .float-wa {
+            animation: pulse-green 2s infinite;
+        }
+        @keyframes pulse-green {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Estilo para el input de testimonios */
+        .input-style {
+            background-color: #f3f4f6;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+        }
+        .input-style:focus {
+            background-color: #fff;
+            border-color: #0284c7;
+            outline: none;
+        }
+
+        /* Ajuste de logo */
+        .logo-img {
+            max-height: 50px;
+            width: auto;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-700 bg-slate-50 antialiased">
+
+    <!-- Navegación -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur shadow-md transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-24"> <!-- Aumenté altura para mejor vista del logo -->
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <!-- INTENTA CARGAR LA IMAGEN DEL LOGO -->
+                    <img src="logotipo.png" alt="DL Clean Logo" class="logo-img mr-2 hidden md:block" onerror="this.style.display='none'; document.getElementById('text-logo').style.display='flex';">
+                    <img src="logotipo.png" alt="DL Clean Logo" class="logo-img mr-2 block md:hidden" style="max-height: 40px;" onerror="this.style.display='none'; document.getElementById('text-logo-mobile').style.display='flex';">
+                    
+                    <!-- FALLBACK: TEXT LOGO (Si la imagen falla o no está) -->
+                    <div id="text-logo" class="hidden items-center gap-2">
+                        <div class="bg-brand-primary text-white p-2 rounded-lg">
+                            <i class="fa-solid fa-sparkles text-xl"></i>
+                        </div>
+                        <div>
+                            <span class="font-heading font-bold text-2xl text-brand-dark tracking-tighter">DL</span>
+                            <span class="font-heading font-light text-2xl text-brand-primary">Clean</span>
+                        </div>
+                    </div>
+                    <!-- Fallback móvil -->
+                    <div id="text-logo-mobile" class="hidden items-center gap-2 md:hidden">
+                        <span class="font-heading font-bold text-xl text-brand-dark">DL</span><span class="font-heading font-light text-xl text-brand-primary">Clean</span>
+                    </div>
+                </div>
+                
+                <!-- Menú Desktop -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#inicio" class="text-gray-600 hover:text-brand-primary font-medium transition">Inicio</a>
+                    <a href="#servicios" class="text-gray-600 hover:text-brand-primary font-medium transition">Precios</a>
+                    <a href="#galeria" class="text-gray-600 hover:text-brand-primary font-medium transition">Resultados</a>
+                    <a href="#testimonios" class="text-gray-600 hover:text-brand-primary font-medium transition">Opiniones</a>
+                    <a href="https://wa.me/50764033388" target="_blank" class="bg-brand-primary text-white px-5 py-2 rounded-full font-bold hover:bg-sky-700 transition shadow-lg transform hover:scale-105">
+                        <i class="fa-brands fa-whatsapp mr-2"></i> Cotizar
+                    </a>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-brand-primary focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menú Móvil Desplegable -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t shadow-xl">
+            <a href="#inicio" class="block py-3 px-4 text-gray-700 hover:bg-brand-light border-b border-gray-100">Inicio</a>
+            <a href="#servicios" class="block py-3 px-4 text-gray-700 hover:bg-brand-light border-b border-gray-100">Precios</a>
+            <a href="#galeria" class="block py-3 px-4 text-gray-700 hover:bg-brand-light border-b border-gray-100">Resultados</a>
+            <a href="#contacto" class="block py-3 px-4 text-gray-700 hover:bg-brand-light">Contacto</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION (Video Background) -->
+    <header id="inicio" class="relative w-full h-screen flex items-center justify-center overflow-hidden">
+        <!-- Video de Fondo -->
+        <video autoplay muted loop playsinline class="absolute w-full h-full object-cover z-0">
+            <!-- Video genérico de limpieza de alta calidad -->
+            <source src="https://videos.pexels.com/video-files/4107255/4107255-uhd_2560_1440_25fps.mp4" type="video/mp4">
+        </video>
+        
+        <!-- Overlay oscuro -->
+        <div class="hero-overlay absolute inset-0 z-10"></div>
+
+        <!-- Contenido -->
+        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto fade-in-up">
+            <span class="inline-block py-1 px-3 rounded-full bg-brand-accent/20 border border-brand-accent/50 text-brand-accent text-sm font-bold mb-4 backdrop-blur-sm uppercase tracking-wider">
+                Especialistas en Limpieza Profunda
+            </span>
+            <h1 class="font-heading font-extrabold text-4xl md:text-6xl text-white mb-6 leading-tight text-shadow">
+                Cuidamos tu espacio como si fuera <span class="text-brand-primary bg-white/10 px-2 rounded">nuestro</span>
+            </h1>
+            <!-- DESCRIPCIÓN CORREGIDA (Sin "Número 1", enfocada en calidad) -->
+            <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto font-light">
+                Renueva tus muebles y elimina ácaros con un servicio profesional caracterizado por la atención al detalle y nuestro compromiso absoluto con la higiene de tu hogar.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://wa.me/50764033388?text=Hola%20DL%20Clean,%20quisiera%20una%20cotización%20para..." target="_blank" class="bg-brand-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-sky-600 transition shadow-xl flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i> Cotiza ahora
+                </a>
+                <a href="#servicios" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-brand-dark transition flex items-center justify-center">
+                    Ver Precios
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- SECCIÓN DE SERVICIOS Y PRECIOS -->
+    <section id="servicios" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in-up">
+                <h2 class="font-heading text-brand-dark text-3xl md:text-4xl font-bold mb-4">Catálogo de Servicios</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Selecciona una categoría para ver nuestros precios referenciales.</p>
+                
+                <!-- Pestañas (Tabs) -->
+                <div class="flex justify-center gap-4 mt-8">
+                    <button onclick="switchTab('hogar')" id="btn-hogar" class="px-6 py-2 rounded-full font-bold bg-brand-primary text-white shadow-lg transition transform hover:scale-105 active-tab">
+                        <i class="fa-solid fa-house mr-2"></i> Hogar
+                    </button>
+                    <button onclick="switchTab('empresas')" id="btn-empresas" class="px-6 py-2 rounded-full font-bold bg-white text-gray-500 border hover:bg-gray-100 transition">
+                        <i class="fa-solid fa-building mr-2"></i> Empresas
+                    </button>
+                </div>
+            </div>
+
+            <!-- Contenedor Hogar -->
+            <div id="tab-hogar" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 fade-in-up">
+                
+                <!-- Item 1: Sofás -->
+                <div class="price-card bg-white p-6 rounded-2xl shadow-sm border border-gray-100 transition relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-brand-light p-3 rounded-bl-2xl text-brand-primary">
+                        <i class="fa-solid fa-couch text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-gray-800 mb-2">Limpieza de Sofás</h3>
+                    <p class="text-gray-500 text-sm mb-4">Lavado profundo, eliminación de manchas y olores.</p>
+                    <div class="space-y-3 mb-6 border-t pt-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">2 Puestos</span>
+                            <span class="font-bold text-brand-primary">$35.00*</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">3 Puestos</span>
+                            <span class="font-bold text-brand-primary">$45.00*</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Seccional L</span>
+                            <span class="font-bold text-brand-primary">Desde $55.00*</span>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/50764033388?text=Hola,%20me%20interesa%20lavar%20mi%20sofá..." target="_blank" class="block w-full text-center bg-brand-dark text-white py-3 rounded-xl hover:bg-brand-primary transition font-semibold">
+                        Agendar Cita
+                    </a>
+                </div>
+
+                <!-- Item 2: Colchones -->
+                <div class="price-card bg-white p-6 rounded-2xl shadow-sm border border-gray-100 transition relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-brand-light p-3 rounded-bl-2xl text-brand-primary">
+                        <i class="fa-solid fa-bed text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-gray-800 mb-2">Colchones</h3>
+                    <p class="text-gray-500 text-sm mb-4">Desinfección anti-ácaros y blanqueamiento.</p>
+                    <div class="space-y-3 mb-6 border-t pt-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Twin / 3/4</span>
+                            <span class="font-bold text-brand-primary">$25.00*</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Full / Doble</span>
+                            <span class="font-bold text-brand-primary">$35.00*</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Queen / King</span>
+                            <span class="font-bold text-brand-primary">$45.00 - $55.00*</span>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/50764033388?text=Hola,%20me%20interesa%20limpiar%20mis%20colchones..." target="_blank" class="block w-full text-center bg-brand-dark text-white py-3 rounded-xl hover:bg-brand-primary transition font-semibold">
+                        Agendar Cita
+                    </a>
+                </div>
+
+                <!-- Item 3: Sillas de Comedor (CORREGIDO) -->
+                <div class="price-card bg-white p-6 rounded-2xl shadow-sm border border-gray-100 transition relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-brand-light p-3 rounded-bl-2xl text-brand-primary">
+                        <i class="fa-solid fa-chair text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-gray-800 mb-2">Sillas de Comedor</h3>
+                    <p class="text-gray-500 text-sm mb-4">Restauramos el color y la higiene de sus sillas.</p>
+                    <div class="space-y-3 mb-6 border-t pt-4">
+                        <!-- Estructura de precios corregida -->
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Asiento solamente</span>
+                            <span class="font-bold text-brand-primary">$5.00 - $8.00 c/u*</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Asiento + Respaldar</span>
+                            <span class="font-bold text-brand-primary">$15.00 c/u*</span>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/50764033388?text=Hola,%20me%20interesa%20limpiar%20mis%20sillas..." target="_blank" class="block w-full text-center bg-brand-dark text-white py-3 rounded-xl hover:bg-brand-primary transition font-semibold">
+                        Agendar Cita
+                    </a>
+                </div>
+
+                 <!-- Item 4: Autos (CORREGIDO) -->
+                 <div class="price-card bg-white p-6 rounded-2xl shadow-sm border border-gray-100 transition relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-brand-light p-3 rounded-bl-2xl text-brand-primary">
+                        <i class="fa-solid fa-car text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-gray-800 mb-2">Interior de Autos</h3>
+                    <p class="text-gray-500 text-sm mb-4">Limpieza completa y detallada del vehículo.</p>
+                    <div class="space-y-3 mb-6 border-t pt-4">
+                        <!-- Precios corregidos y eliminación de 'Interior Completo' extra -->
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Sedán</span>
+                            <span class="font-bold text-brand-primary">$55.00*</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">SUV / 4x4</span>
+                            <span class="font-bold text-brand-primary">$75.00*</span>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/50764033388?text=Hola,%20me%20interesa%20limpiar%20mi%20auto..." target="_blank" class="block w-full text-center bg-brand-dark text-white py-3 rounded-xl hover:bg-brand-primary transition font-semibold">
+                        Agendar Cita
+                    </a>
+                </div>
+
+                <!-- Item 5: Alfombras -->
+                <div class="price-card bg-white p-6 rounded-2xl shadow-sm border border-gray-100 transition relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-brand-light p-3 rounded-bl-2xl text-brand-primary">
+                        <i class="fa-solid fa-rug text-2xl"></i>
+                    </div>
+                    <h3 class="font-heading text-xl font-bold text-gray-800 mb-2">Alfombras</h3>
+                    <p class="text-gray-500 text-sm mb-4">Eliminamos manchas de mascotas y tráfico.</p>
+                    <div class="space-y-3 mb-6 border-t pt-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Pequeña (Area Rug)</span>
+                            <span class="font-bold text-brand-primary">$20.00*</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-gray-600">Mediana/Grande</span>
+                            <span class="font-bold text-brand-primary">Cotizar por foto</span>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/50764033388?text=Hola,%20quisiera%20cotizar%20una%20alfombra..." target="_blank" class="block w-full text-center bg-brand-dark text-white py-3 rounded-xl hover:bg-brand-primary transition font-semibold">
+                        Enviar Foto
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contenedor Empresas (CORREGIDO) -->
+            <div id="tab-empresas" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Tarjeta Corporativa -->
+                <div class="price-card bg-white p-6 rounded-2xl shadow-sm border-l-4 border-brand-primary relative overflow-hidden col-span-1 md:col-span-2 lg:col-span-3">
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <div class="p-6 bg-brand-light rounded-full text-brand-primary">
+                            <i class="fa-solid fa-briefcase text-4xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="font-heading text-2xl font-bold text-gray-800 mb-2">Servicios Corporativos</h3>
+                            <!-- Descripción corregida -->
+                            <p class="text-gray-600 mb-4">Atendemos oficinas, restaurantes, cines y <strong>vehículos corporativos</strong>. Ofrecemos facturación y horarios ajustados a las necesidades de su empresa.</p>
+                            <ul class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-600 mb-4">
+                                <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Limpieza de sillas de oficina</li>
+                                <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Alfombras de pared a pared</li>
+                                <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Paneles de tela divisorios</li>
+                                <li><i class="fa-solid fa-check text-green-500 mr-2"></i> Precios especiales por volumen</li>
+                            </ul>
+                        </div>
+                        <div>
+                            <a href="https://wa.me/50764033388?text=Hola,%20soy%20empresa%20y%20requiero%20una%20inspección..." target="_blank" class="inline-block bg-brand-accent text-white px-8 py-4 rounded-xl font-bold hover:bg-teal-700 transition shadow-lg">
+                                Solicitar Inspección Gratis
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center">
+                <p class="text-xs text-gray-400 italic">* Precios referenciales sujetos a evaluación según el estado del mueble y ubicación.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERÍA ANTES Y DESPUÉS -->
+    <section id="galeria" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <span class="text-brand-primary font-bold tracking-widest uppercase text-sm">Evidencia Real</span>
+                <h2 class="font-heading text-brand-dark text-3xl md:text-4xl font-bold mt-2">Transformaciones Increíbles</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Caso 1 -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg h-64 md:h-80 cursor-pointer fade-in-up">
+                    <img src="https://images.unsplash.com/photo-1584622050111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" alt="Mueble sucio" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded text-xs font-bold z-10">ANTES</div>
+                    
+                    <div class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out" style="background-image: url('https://images.unsplash.com/photo-1527011046414-4781f1f94f8c?auto=format&fit=crop&q=80&w=800'); background-size: cover; background-position: center;"></div>
+                    <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded text-xs font-bold z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700">DESPUÉS</div>
+                    
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 translate-y-4 group-hover:translate-y-0 transition-transform">
+                        <p class="text-white font-bold">Recuperación de Color</p>
+                        <p class="text-gray-300 text-sm">Sofá de microfibra</p>
+                    </div>
+                </div>
+
+                <!-- Caso 2 -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg h-64 md:h-80 cursor-pointer fade-in-up" style="transition-delay: 100ms;">
+                    <img src="https://images.unsplash.com/photo-1632829882891-5047ccc4d16e?auto=format&fit=crop&q=80&w=800" alt="Colchón sucio" class="absolute inset-0 w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded text-xs font-bold z-10">ANTES</div>
+                    
+                    <div class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out" style="background-image: url('https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&q=80&w=800'); background-size: cover; background-position: center;"></div>
+                    <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded text-xs font-bold z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700">DESPUÉS</div>
+                    
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 translate-y-4 group-hover:translate-y-0 transition-transform">
+                        <p class="text-white font-bold">Desmanchado Profundo</p>
+                        <p class="text-gray-300 text-sm">Colchón King</p>
+                    </div>
+                </div>
+
+                <!-- Caso 3 -->
+                <div class="group relative overflow-hidden rounded-2xl shadow-lg h-64 md:h-80 cursor-pointer fade-in-up" style="transition-delay: 200ms;">
+                    <img src="https://images.unsplash.com/photo-1520038410233-7141dd782f08?auto=format&fit=crop&q=80&w=800" alt="Auto sucio" class="absolute inset-0 w-full h-full object-cover filter grayscale">
+                    <div class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded text-xs font-bold z-10">ANTES</div>
+                    
+                    <div class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out" style="background-image: url('https://images.unsplash.com/photo-1520038410233-7141dd782f08?auto=format&fit=crop&q=80&w=800'); background-size: cover; background-position: center;"></div>
+                    <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded text-xs font-bold z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700">DESPUÉS</div>
+                    
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 translate-y-4 group-hover:translate-y-0 transition-transform">
+                        <p class="text-white font-bold">Detallado de Interiores</p>
+                        <p class="text-gray-300 text-sm">Asientos de Vehículo</p>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-center mt-6 text-gray-500 text-sm">Pasa el mouse (o toca en el móvil) sobre las imágenes para ver el cambio.</p>
+        </div>
+    </section>
+
+    <!-- TESTIMONIOS (LocalStorage) -->
+    <section id="testimonios" class="py-20 bg-brand-light">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="font-heading text-center text-3xl font-bold text-brand-dark mb-10">Lo que dicen nuestros clientes</h2>
+            
+            <!-- Contenedor de Reseñas -->
+            <div id="reviews-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                <!-- Reseña Hardcoded de Ejemplo -->
+                <div class="bg-white p-6 rounded-xl shadow-md">
+                    <div class="flex items-center mb-2 text-yellow-400">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-gray-600 italic mb-4">"Excelente servicio. Llegaron puntuales y mi sofá quedó como nuevo. Súper recomendados."</p>
+                    <p class="font-bold text-brand-primary">- Ana Castillo</p>
+                </div>
+            </div>
+
+            <!-- Formulario para agregar reseña -->
+            <div class="bg-white p-8 rounded-2xl shadow-lg max-w-lg mx-auto fade-in-up">
+                <h3 class="text-xl font-bold mb-4 text-gray-800">Déjanos tu opinión</h3>
+                <form id="review-form" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Tu Nombre</label>
+                        <input type="text" id="review-name" required class="w-full px-4 py-2 rounded-lg input-style" placeholder="Ej: Juan Pérez">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Tu Comentario</label>
+                        <textarea id="review-text" required rows="3" class="w-full px-4 py-2 rounded-lg input-style" placeholder="Cuéntanos tu experiencia..."></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-brand-accent text-white font-bold py-3 rounded-lg hover:bg-teal-700 transition">
+                        Publicar Comentario
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CONTACTO -->
+    <footer id="contacto" class="bg-brand-dark text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-700 pb-12">
+                <!-- Info -->
+                <div>
+                    <h3 class="text-2xl font-heading font-bold mb-4">DL Clean<span class="text-brand-primary">.</span></h3>
+                    <p class="text-gray-400 mb-6">Expertos en limpieza y desinfección de tapicería en Panamá. Servicio a domicilio garantizado.</p>
+                    <div class="flex space-x-4">
+                        <a href="https://www.instagram.com/dlcleanpty?igsh=ZTRpcnY4aGZ5cWNh" target="_blank" class="bg-gray-800 hover:bg-pink-600 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fa-brands fa-instagram"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@dlclean.pty?_r=1&_t=ZS-92bkaFbakT7" target="_blank" class="bg-gray-800 hover:bg-black w-10 h-10 rounded-full flex items-center justify-center transition border border-gray-700">
+                            <i class="fa-brands fa-tiktok"></i>
+                        </a>
+                        <a href="https://wa.me/50764033388" target="_blank" class="bg-gray-800 hover:bg-green-500 w-10 h-10 rounded-full flex items-center justify-center transition">
+                            <i class="fa-brands fa-whatsapp"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Contacto (CORREGIDO: Sin email, ubicación actualizada) -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-brand-light">Contáctanos</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-phone mt-1 mr-3 text-brand-primary"></i>
+                            <span>+507 6403-3388</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fa-solid fa-location-dot mt-1 mr-3 text-brand-primary"></i>
+                            <span>Ciudad de Panamá, Panamá Oeste, Arraiján.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Link Rápido (CORREGIDO: Horario unificado) -->
+                <div>
+                    <h4 class="text-lg font-bold mb-4 text-brand-light">Horario de Atención</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>Lunes a Domingo</li>
+                        <li>9:00 a.m. – 6:00 p.m.</li>
+                        <li class="text-brand-primary italic text-sm mt-2">(Atención con previa cita)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 text-center text-gray-500 text-sm">
+                &copy; 2024 DLClean. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Flotante -->
+    <a href="https://wa.me/50764033388?text=Hola,%20vi%20su%20página%20web%20y%20me%20interesa%20una%20limpieza." target="_blank" class="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-2xl float-wa hover:bg-green-600 transition flex items-center gap-2 group">
+        <span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 whitespace-nowrap font-bold">¡Cotiza ya!</span>
+        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    </a>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // 1. Manejo del Menú Móvil
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // 2. Sistema de Pestañas (Tabs)
+        function switchTab(tabName) {
+            // Ocultar todos
+            document.getElementById('tab-hogar').classList.add('hidden');
+            document.getElementById('tab-empresas').classList.add('hidden');
+            
+            // Reset botones
+            const btnHogar = document.getElementById('btn-hogar');
+            const btnEmpresas = document.getElementById('btn-empresas');
+            
+            btnHogar.classList.remove('bg-brand-primary', 'text-white', 'shadow-lg', 'scale-105');
+            btnHogar.classList.add('bg-white', 'text-gray-500', 'border');
+            
+            btnEmpresas.classList.remove('bg-brand-primary', 'text-white', 'shadow-lg', 'scale-105');
+            btnEmpresas.classList.add('bg-white', 'text-gray-500', 'border');
+
+            // Mostrar seleccionado
+            document.getElementById('tab-' + tabName).classList.remove('hidden');
+            document.getElementById('tab-' + tabName).classList.add('fade-in-up', 'visible'); // Re-trigger animación
+
+            // Estilar botón activo
+            const activeBtn = document.getElementById('btn-' + tabName);
+            activeBtn.classList.remove('bg-white', 'text-gray-500', 'border');
+            activeBtn.classList.add('bg-brand-primary', 'text-white', 'shadow-lg');
+        }
+
+        // 3. Sistema de Testimonios (LocalStorage)
+        const reviewForm = document.getElementById('review-form');
+        const reviewsContainer = document.getElementById('reviews-container');
+
+        // Cargar al inicio
+        document.addEventListener('DOMContentLoaded', loadReviews);
+
+        reviewForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('review-name').value;
+            const text = document.getElementById('review-text').value;
+
+            if(name && text) {
+                const review = { name, text, date: new Date().toLocaleDateString() };
+                saveReview(review);
+                addReviewToDOM(review);
+                reviewForm.reset();
+                alert('¡Gracias por tu comentario! Se ha publicado.');
+            }
+        });
+
+        function saveReview(review) {
+            let reviews = JSON.parse(localStorage.getItem('dlclean_reviews')) || [];
+            reviews.unshift(review); // Agregar al principio
+            if(reviews.length > 6) reviews.pop();
+            localStorage.setItem('dlclean_reviews', JSON.stringify(reviews));
+        }
+
+        function loadReviews() {
+            let reviews = JSON.parse(localStorage.getItem('dlclean_reviews')) || [];
+            reviews.forEach(review => addReviewToDOM(review));
+        }
+
+        function addReviewToDOM(review) {
+            const div = document.createElement('div');
+            div.className = 'bg-white p-6 rounded-xl shadow-md fade-in-up visible';
+            div.innerHTML = `
+                <div class="flex items-center mb-2 text-yellow-400">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-gray-600 italic mb-4">"${review.text}"</p>
+                <div class="flex justify-between items-center">
+                    <p class="font-bold text-brand-primary">- ${review.name}</p>
+                    <span class="text-xs text-gray-400">${review.date}</span>
+                </div>
+            `;
+            reviewsContainer.insertBefore(div, reviewsContainer.firstChild);
+        }
+
+        // 4. Animaciones al hacer Scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 5. Navbar efecto scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-md');
+                nav.classList.replace('h-24', 'h-20');
+            } else {
+                nav.classList.remove('shadow-md');
+                nav.classList.replace('h-20', 'h-24');
+            }
+        });
+    </script>
+</body>
+</html>
