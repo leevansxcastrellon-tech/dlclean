@@ -18,6 +18,9 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Supabase JS Client CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <!-- Configuración de Colores Personalizada -->
     <script>
         tailwind.config = {
@@ -91,10 +94,13 @@
             outline: none;
         }
 
-        /* Ajuste de logo */
-        .logo-img {
-            max-height: 50px;
-            width: auto;
+        /* Limitar líneas de texto en comentarios */
+        .line-clamp-4 {
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
     </style>
 </head>
@@ -103,25 +109,19 @@
     <!-- Navegación -->
     <nav class="fixed w-full z-50 bg-white/95 backdrop-blur shadow-md transition-all duration-300" id="navbar">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-24"> <!-- Aumenté altura para mejor vista del logo -->
+            <div class="flex justify-between items-center h-16 sm:h-20 md:h-24"> <!-- Altura responsiva -->
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
-                    <!-- INTENTA CARGAR LA IMAGEN DEL LOGO -->
-                    <img src="logotipo.png" alt="DL Clean Logo" class="logo-img mr-2 hidden md:block" onerror="this.style.display='none'; document.getElementById('text-logo').style.display='flex';">
-                    <img src="logotipo.png" alt="DL Clean Logo" class="logo-img mr-2 block md:hidden" style="max-height: 40px;" onerror="this.style.display='none'; document.getElementById('text-logo-mobile').style.display='flex';">
-                    
-                    <!-- FALLBACK: TEXT LOGO (Si la imagen falla o no está) -->
-                    <div id="text-logo" class="hidden items-center gap-2">
-                        <div class="bg-brand-primary text-white p-2 rounded-lg">
-                            <i class="fa-solid fa-sparkles text-xl"></i>
+                    <!-- Logo con texto (siempre visible) -->
+                    <div id="text-logo" class="flex items-center gap-2">
+                        <div class="bg-brand-primary text-white p-1.5 sm:p-2 rounded-lg">
+                            <i class="fa-solid fa-sparkles text-lg sm:text-xl"></i>
                         </div>
                         <div>
-                            <span class="font-heading font-bold text-2xl text-brand-dark tracking-tighter">DL</span>
-                            <span class="font-heading font-light text-2xl text-brand-primary">Clean</span>
+                            <span class="font-heading font-bold text-xl sm:text-2xl text-brand-dark tracking-tighter">DL</span>
+                            <span class="font-heading font-light text-xl sm:text-2xl text-brand-primary">Clean</span>
                         </div>
                     </div>
-                    <!-- Fallback móvil -->
-                    
                 </div>
                 
                 <!-- Menú Desktop -->
@@ -152,34 +152,28 @@
         </div>
     </nav>
 
-    <!-- HERO SECTION (Video Background) -->
-    <header id="inicio" class="relative w-full h-screen flex items-center justify-center overflow-hidden">
-        <!-- Video de Fondo -->
-        <video autoplay muted loop playsinline class="absolute w-full h-full object-cover z-0">
-            <!-- Video genérico de limpieza de alta calidad -->
-            <source src="https://videos.pexels.com/video-files/4107255/4107255-uhd_2560_1440_25fps.mp4" type="video/mp4">
-        </video>
-        
-        <!-- Overlay oscuro -->
-        <div class="hero-overlay absolute inset-0 z-10"></div>
+    <!-- HERO SECTION -->
+    <header id="inicio" class="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24 md:pt-28 pb-8 bg-gradient-to-br from-brand-dark via-slate-800 to-brand-dark">
+        <!-- Overlay con gradiente -->
+        <div class="absolute inset-0 z-10 bg-gradient-to-b from-brand-dark/50 to-brand-dark/80"></div>
 
         <!-- Contenido -->
-        <div class="relative z-20 text-center px-4 max-w-4xl mx-auto fade-in-up">
-            <span class="inline-block py-1 px-3 rounded-full bg-brand-accent/20 border border-brand-accent/50 text-brand-accent text-sm font-bold mb-4 backdrop-blur-sm uppercase tracking-wider">
+        <div class="relative z-20 text-center px-6 sm:px-8 max-w-4xl mx-auto fade-in-up">
+            <span class="inline-block py-1 px-3 rounded-full bg-brand-accent/20 border border-brand-accent/50 text-brand-accent text-xs sm:text-sm font-bold mb-3 sm:mb-4 backdrop-blur-sm uppercase tracking-wider">
                 Especialistas en Limpieza Profunda
             </span>
-            <h1 class="font-heading font-extrabold text-4xl md:text-6xl text-white mb-6 leading-tight text-shadow">
+            <h1 class="font-heading font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white mb-4 sm:mb-6 leading-tight text-shadow">
                 Cuidamos tu espacio como si fuera <span class="text-brand-primary bg-white/10 px-2 rounded">nuestro</span>
             </h1>
             <!-- DESCRIPCIÓN CORREGIDA (Sin "Número 1", enfocada en calidad) -->
-            <p class="text-lg md:text-xl text-gray-200 mb-8 max-w-2xl mx-auto font-light">
+            <p class="text-base sm:text-lg md:text-xl text-gray-200 mb-6 sm:mb-8 max-w-2xl mx-auto font-light leading-relaxed">
                 Renueva tus muebles y elimina ácaros con un servicio profesional caracterizado por la atención al detalle y nuestro compromiso absoluto con la higiene de tu hogar.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://wa.me/50764033388?text=Hola%20DL%20Clean,%20quisiera%20una%20cotización%20para..." target="_blank" class="bg-brand-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-sky-600 transition shadow-xl flex items-center justify-center gap-2">
-                    <i class="fa-brands fa-whatsapp text-2xl"></i> Cotiza ahora
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
+                <a href="https://wa.me/50764033388?text=Hola%20DL%20Clean,%20quisiera%20una%20cotización%20para..." target="_blank" class="bg-brand-primary text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-sky-600 transition shadow-xl flex items-center justify-center gap-2">
+                    <i class="fa-brands fa-whatsapp text-xl sm:text-2xl"></i> Cotiza ahora
                 </a>
-                <a href="#servicios" class="bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:text-brand-dark transition flex items-center justify-center">
+                <a href="#servicios" class="bg-transparent border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold text-base sm:text-lg hover:bg-white hover:text-brand-dark transition flex items-center justify-center">
                     Ver Precios
                 </a>
             </div>
@@ -187,10 +181,10 @@
     </header>
 
     <!-- SECCIÓN DE SERVICIOS Y PRECIOS -->
-    <section id="servicios" class="py-20 bg-slate-50">
+    <section id="servicios" class="py-12 sm:py-16 md:py-20 bg-slate-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 fade-in-up">
-                <h2 class="font-heading text-brand-dark text-3xl md:text-4xl font-bold mb-4">Catálogo de Servicios</h2>
+            <div class="text-center mb-8 sm:mb-12 fade-in-up">
+                <h2 class="font-heading text-brand-dark text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">Catálogo de Servicios</h2>
                 <p class="text-gray-600 max-w-2xl mx-auto">Selecciona una categoría para ver nuestros precios referenciales.</p>
                 
                 <!-- Pestañas (Tabs) -->
@@ -362,81 +356,60 @@
     </section>
 
     <!-- GALERÍA ANTES Y DESPUÉS -->
-    <section id="galeria" class="py-20 bg-white">
+    <section id="galeria" class="py-12 sm:py-16 md:py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16 fade-in-up">
-                <span class="text-brand-primary font-bold tracking-widest uppercase text-sm">Evidencia Real</span>
-                <h2 class="font-heading text-brand-dark text-3xl md:text-4xl font-bold mt-2">Transformaciones Increíbles</h2>
+            <div class="text-center mb-8 sm:mb-12 md:mb-16 fade-in-up">
+                <span class="text-brand-primary font-bold tracking-widest uppercase text-xs sm:text-sm">Evidencia Real</span>
+                <h2 class="font-heading text-brand-dark text-2xl sm:text-3xl md:text-4xl font-bold mt-2">Transformaciones Increíbles</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Caso 1 -->
-                <div class="group relative overflow-hidden rounded-2xl shadow-lg h-64 md:h-80 cursor-pointer fade-in-up">
-                    <img src="https://images.unsplash.com/photo-1584622050111-993a426fbf0a?auto=format&fit=crop&q=80&w=800" alt="Mueble sucio" class="absolute inset-0 w-full h-full object-cover">
-                    <div class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded text-xs font-bold z-10">ANTES</div>
-                    
-                    <div class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out" style="background-image: url('https://images.unsplash.com/photo-1527011046414-4781f1f94f8c?auto=format&fit=crop&q=80&w=800'); background-size: cover; background-position: center;"></div>
-                    <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded text-xs font-bold z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700">DESPUÉS</div>
-                    
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 translate-y-4 group-hover:translate-y-0 transition-transform">
-                        <p class="text-white font-bold">Recuperación de Color</p>
-                        <p class="text-gray-300 text-sm">Sofá de microfibra</p>
-                    </div>
-                </div>
-
-                <!-- Caso 2 -->
-                <div class="group relative overflow-hidden rounded-2xl shadow-lg h-64 md:h-80 cursor-pointer fade-in-up" style="transition-delay: 100ms;">
-                    <img src="https://images.unsplash.com/photo-1632829882891-5047ccc4d16e?auto=format&fit=crop&q=80&w=800" alt="Colchón sucio" class="absolute inset-0 w-full h-full object-cover">
-                    <div class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded text-xs font-bold z-10">ANTES</div>
-                    
-                    <div class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out" style="background-image: url('https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&q=80&w=800'); background-size: cover; background-position: center;"></div>
-                    <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded text-xs font-bold z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700">DESPUÉS</div>
-                    
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 translate-y-4 group-hover:translate-y-0 transition-transform">
-                        <p class="text-white font-bold">Desmanchado Profundo</p>
-                        <p class="text-gray-300 text-sm">Colchón King</p>
-                    </div>
-                </div>
-
-                <!-- Caso 3 -->
-                <div class="group relative overflow-hidden rounded-2xl shadow-lg h-64 md:h-80 cursor-pointer fade-in-up" style="transition-delay: 200ms;">
-                    <img src="https://images.unsplash.com/photo-1520038410233-7141dd782f08?auto=format&fit=crop&q=80&w=800" alt="Auto sucio" class="absolute inset-0 w-full h-full object-cover filter grayscale">
-                    <div class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded text-xs font-bold z-10">ANTES</div>
-                    
-                    <div class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-in-out" style="background-image: url('https://images.unsplash.com/photo-1520038410233-7141dd782f08?auto=format&fit=crop&q=80&w=800'); background-size: cover; background-position: center;"></div>
-                    <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded text-xs font-bold z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-700">DESPUÉS</div>
-                    
-                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 translate-y-4 group-hover:translate-y-0 transition-transform">
-                        <p class="text-white font-bold">Detallado de Interiores</p>
-                        <p class="text-gray-300 text-sm">Asientos de Vehículo</p>
-                    </div>
-                </div>
+            <div id="galeria-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+                <!-- Las imágenes se agregarán aquí -->
             </div>
             
             <p class="text-center mt-6 text-gray-500 text-sm">Pasa el mouse (o toca en el móvil) sobre las imágenes para ver el cambio.</p>
         </div>
     </section>
 
-    <!-- TESTIMONIOS (LocalStorage) -->
-    <section id="testimonios" class="py-20 bg-brand-light">
-        <div class="max-w-4xl mx-auto px-4">
-            <h2 class="font-heading text-center text-3xl font-bold text-brand-dark mb-10">Lo que dicen nuestros clientes</h2>
+    <!-- TESTIMONIOS -->
+    <section id="testimonios" class="py-12 sm:py-16 md:py-20 bg-brand-light">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6">
+            <h2 class="font-heading text-center text-2xl sm:text-3xl font-bold text-brand-dark mb-6 sm:mb-10">Lo que dicen nuestros clientes</h2>
             
-            <!-- Contenedor de Reseñas -->
-            <div id="reviews-container" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-                <!-- Reseña Hardcoded de Ejemplo -->
-                <div class="bg-white p-6 rounded-xl shadow-md">
-                    <div class="flex items-center mb-2 text-yellow-400">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            <!-- Carrusel de Opiniones -->
+            <div class="relative px-8 sm:px-12">
+                <!-- Botón Anterior -->
+                <button id="carousel-prev" class="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-brand-primary hover:bg-brand-primary hover:text-white transition">
+                    <i class="fa-solid fa-chevron-left text-sm sm:text-lg"></i>
+                </button>
+                
+                <!-- Contenedor del Carrusel -->
+                <div class="overflow-hidden">
+                    <div id="reviews-container" class="flex gap-4 transition-transform duration-500 ease-in-out">
+                        <!-- Las opiniones se cargarán dinámicamente desde Supabase -->
                     </div>
-                    <p class="text-gray-600 italic mb-4">"Excelente servicio. Llegaron puntuales y mi sofá quedó como nuevo. Súper recomendados."</p>
-                    <p class="font-bold text-brand-primary">- Ana Castillo</p>
                 </div>
+                
+                <!-- Botón Siguiente -->
+                <button id="carousel-next" class="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white shadow-lg rounded-full w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center text-brand-primary hover:bg-brand-primary hover:text-white transition">
+                    <i class="fa-solid fa-chevron-right text-sm sm:text-lg"></i>
+                </button>
+            </div>
+            
+            <!-- Indicadores del carrusel -->
+            <div id="carousel-dots" class="flex justify-center gap-2 mt-6">
+                <!-- Se generan dinámicamente -->
+            </div>
+            
+            <!-- Mensaje si no hay opiniones -->
+            <div id="no-reviews-message" class="hidden text-center py-12">
+                <i class="fa-regular fa-comments text-6xl text-gray-300 mb-4"></i>
+                <p class="text-gray-500">Sé el primero en dejarnos tu opinión</p>
             </div>
 
             <!-- Formulario para agregar reseña -->
-            <div class="bg-white p-8 rounded-2xl shadow-lg max-w-lg mx-auto fade-in-up">
-                <h3 class="text-xl font-bold mb-4 text-gray-800">Déjanos tu opinión</h3>
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-lg max-w-lg mx-auto fade-in-up mt-8 sm:mt-12">
+                <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-gray-800">Déjanos tu opinión</h3>
                 <form id="review-form" class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-1">Tu Nombre</label>
@@ -455,14 +428,14 @@
     </section>
 
     <!-- FOOTER / CONTACTO -->
-    <footer id="contacto" class="bg-brand-dark text-white pt-16 pb-8">
+    <footer id="contacto" class="bg-brand-dark text-white pt-10 sm:pt-16 pb-6 sm:pb-8">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-700 pb-12">
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-12 border-b border-gray-700 pb-8 sm:pb-12">
                 <!-- Info -->
-                <div>
-                    <h3 class="text-2xl font-heading font-bold mb-4">DL Clean<span class="text-brand-primary">.</span></h3>
-                    <p class="text-gray-400 mb-6">Expertos en limpieza y desinfección de tapicería en Panamá. Servicio a domicilio garantizado.</p>
-                    <div class="flex space-x-4">
+                <div class="text-center sm:text-left">
+                    <h3 class="text-xl sm:text-2xl font-heading font-bold mb-3 sm:mb-4">DL Clean<span class="text-brand-primary">.</span></h3>
+                    <p class="text-gray-400 mb-4 sm:mb-6 text-sm sm:text-base">Expertos en limpieza y desinfección de tapicería en Panamá. Servicio a domicilio garantizado.</p>
+                    <div class="flex space-x-4 justify-center sm:justify-start">
                         <a href="https://www.instagram.com/dlcleanpty?igsh=ZTRpcnY4aGZ5cWNh" target="_blank" class="bg-gray-800 hover:bg-pink-600 w-10 h-10 rounded-full flex items-center justify-center transition">
                             <i class="fa-brands fa-instagram"></i>
                         </a>
@@ -476,9 +449,9 @@
                 </div>
                 
                 <!-- Contacto (CORREGIDO: Sin email, ubicación actualizada) -->
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-brand-light">Contáctanos</h4>
-                    <ul class="space-y-3 text-gray-400">
+                <div class="text-center sm:text-left">
+                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-brand-light">Contáctanos</h4>
+                    <ul class="space-y-2 sm:space-y-3 text-gray-400 text-sm sm:text-base">
                         <li class="flex items-start">
                             <i class="fa-solid fa-phone mt-1 mr-3 text-brand-primary"></i>
                             <span>+507 6403-3388</span>
@@ -491,141 +464,31 @@
                 </div>
 
                 <!-- Link Rápido (CORREGIDO: Horario unificado) -->
-                <div>
-                    <h4 class="text-lg font-bold mb-4 text-brand-light">Horario de Atención</h4>
-                    <ul class="space-y-2 text-gray-400">
+                <div class="text-center sm:text-left sm:col-span-2 md:col-span-1">
+                    <h4 class="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-brand-light">Horario de Atención</h4>
+                    <ul class="space-y-1 sm:space-y-2 text-gray-400 text-sm sm:text-base">
                         <li>Lunes a Domingo</li>
                         <li>9:00 a.m. – 6:00 p.m.</li>
                         <li class="text-brand-primary italic text-sm mt-2">(Atención con previa cita)</li>
                     </ul>
                 </div>
             </div>
-            <div class="pt-8 text-center text-gray-500 text-sm">
+            <div class="pt-6 sm:pt-8 text-center text-gray-500 text-xs sm:text-sm">
                 &copy; 2024 DLClean. Todos los derechos reservados.
             </div>
         </div>
     </footer>
 
     <!-- WhatsApp Flotante -->
-    <a href="https://wa.me/50764033388?text=Hola,%20vi%20su%20página%20web%20y%20me%20interesa%20una%20limpieza." target="_blank" class="fixed bottom-6 right-6 z-50 bg-green-500 text-white p-4 rounded-full shadow-2xl float-wa hover:bg-green-600 transition flex items-center gap-2 group">
-        <span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 whitespace-nowrap font-bold">¡Cotiza ya!</span>
-        <i class="fa-brands fa-whatsapp text-3xl"></i>
+    <a href="https://wa.me/50764033388?text=Hola,%20vi%20su%20p%C3%A1gina%20web%20y%20me%20interesa%20una%20limpieza." target="_blank" class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 bg-green-500 text-white p-3 sm:p-4 rounded-full shadow-2xl float-wa hover:bg-green-600 transition flex items-center gap-2 group">
+        <span class="max-w-0 overflow-hidden group-hover:max-w-xs transition-all duration-500 whitespace-nowrap font-bold hidden sm:block">¡Cotiza ya!</span>
+        <i class="fa-brands fa-whatsapp text-2xl sm:text-3xl"></i>
     </a>
 
-    <!-- JAVASCRIPT -->
-    <script>
-        // 1. Manejo del Menú Móvil
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-
-        // 2. Sistema de Pestañas (Tabs)
-        function switchTab(tabName) {
-            // Ocultar todos
-            document.getElementById('tab-hogar').classList.add('hidden');
-            document.getElementById('tab-empresas').classList.add('hidden');
-            
-            // Reset botones
-            const btnHogar = document.getElementById('btn-hogar');
-            const btnEmpresas = document.getElementById('btn-empresas');
-            
-            btnHogar.classList.remove('bg-brand-primary', 'text-white', 'shadow-lg', 'scale-105');
-            btnHogar.classList.add('bg-white', 'text-gray-500', 'border');
-            
-            btnEmpresas.classList.remove('bg-brand-primary', 'text-white', 'shadow-lg', 'scale-105');
-            btnEmpresas.classList.add('bg-white', 'text-gray-500', 'border');
-
-            // Mostrar seleccionado
-            document.getElementById('tab-' + tabName).classList.remove('hidden');
-            document.getElementById('tab-' + tabName).classList.add('fade-in-up', 'visible'); // Re-trigger animación
-
-            // Estilar botón activo
-            const activeBtn = document.getElementById('btn-' + tabName);
-            activeBtn.classList.remove('bg-white', 'text-gray-500', 'border');
-            activeBtn.classList.add('bg-brand-primary', 'text-white', 'shadow-lg');
-        }
-
-        // 3. Sistema de Testimonios (LocalStorage)
-        const reviewForm = document.getElementById('review-form');
-        const reviewsContainer = document.getElementById('reviews-container');
-
-        // Cargar al inicio
-        document.addEventListener('DOMContentLoaded', loadReviews);
-
-        reviewForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const name = document.getElementById('review-name').value;
-            const text = document.getElementById('review-text').value;
-
-            if(name && text) {
-                const review = { name, text, date: new Date().toLocaleDateString() };
-                saveReview(review);
-                addReviewToDOM(review);
-                reviewForm.reset();
-                alert('¡Gracias por tu comentario! Se ha publicado.');
-            }
-        });
-
-        function saveReview(review) {
-            let reviews = JSON.parse(localStorage.getItem('dlclean_reviews')) || [];
-            reviews.unshift(review); // Agregar al principio
-            if(reviews.length > 6) reviews.pop();
-            localStorage.setItem('dlclean_reviews', JSON.stringify(reviews));
-        }
-
-        function loadReviews() {
-            let reviews = JSON.parse(localStorage.getItem('dlclean_reviews')) || [];
-            reviews.forEach(review => addReviewToDOM(review));
-        }
-
-        function addReviewToDOM(review) {
-            const div = document.createElement('div');
-            div.className = 'bg-white p-6 rounded-xl shadow-md fade-in-up visible';
-            div.innerHTML = `
-                <div class="flex items-center mb-2 text-yellow-400">
-                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                </div>
-                <p class="text-gray-600 italic mb-4">"${review.text}"</p>
-                <div class="flex justify-between items-center">
-                    <p class="font-bold text-brand-primary">- ${review.name}</p>
-                    <span class="text-xs text-gray-400">${review.date}</span>
-                </div>
-            `;
-            reviewsContainer.insertBefore(div, reviewsContainer.firstChild);
-        }
-
-        // 4. Animaciones al hacer Scroll
-        const observerOptions = {
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in-up').forEach(el => {
-            observer.observe(el);
-        });
-
-        // 5. Navbar efecto scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('shadow-md');
-                nav.classList.replace('h-24', 'h-20');
-            } else {
-                nav.classList.remove('shadow-md');
-                nav.classList.replace('h-20', 'h-24');
-            }
-        });
-    </script>
+    <!-- ARCHIVOS DE SUPABASE (Configuración y Cliente) - DEBEN IR PRIMERO -->
+    <script src="supabase/config.js"></script>
+    <script src="supabase/supabaseClient.js"></script>
+    <!-- Script principal -->
+    <script src="script.js"></script>
 </body>
 </html>
