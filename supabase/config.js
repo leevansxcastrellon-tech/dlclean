@@ -1,5 +1,5 @@
 const SUPABASE_CONFIG = {
-    url: '',
+    url: 'https://ehfebwvxvtadecmftlwt.supabase.co',
     anonKey: ''
 };
 const TABLA_OPINIONES = 'opiniones';
