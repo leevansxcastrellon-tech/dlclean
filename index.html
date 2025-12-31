@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DLClean Panamá | Limpieza Profesional de Tapicería</title>
-    <link rel="icon" href="img/logotipo.png" type="image/png">
+    <link rel="icon" href="img/logotipo (1).png" type="image/png">
     <meta name="description" content="Servicios de limpieza profesional en Panamá. Especialistas en lavado de sofás, colchones, alfombras y autos. Cotiza gratis por WhatsApp.">
     <meta name="keywords" content="limpieza de tapicería en Panamá, limpieza de colchones, limpieza de sofás, lavado de autos, DL Clean, Arraiján">
     
@@ -50,6 +50,15 @@
         
         .hero-overlay {
             background: linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.6));
+        }
+
+        .hero-with-bg {
+            background-image: 
+                linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)),
+                url('img/imagen de fondo del sitio.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         .text-shadow {
@@ -113,7 +122,7 @@
             <div class="flex justify-between items-center h-16 sm:h-20 md:h-24"> <!-- Altura responsiva -->
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center cursor-pointer gap-3" onclick="window.scrollTo(0,0)">
-                    <img src="img/logotipo.png" alt="DL Clean Logo" class="h-14 sm:h-16 md:h-20 w-auto">
+                    <img src="img/logotipo (1).png" alt="DL Clean Logo" class="h-12 sm:h-14 md:h-16 w-auto">
                     <div id="text-logo" class="flex items-center gap-1">
                         <div>
                             <span class="font-heading font-bold text-2xl sm:text-3xl md:text-4xl text-brand-dark tracking-tighter">DL</span>
@@ -147,11 +156,12 @@
             <a href="#servicios" class="block py-3 px-4 text-gray-700 hover:bg-brand-light border-b border-gray-100">Precios</a>
             <a href="#galeria" class="block py-3 px-4 text-gray-700 hover:bg-brand-light border-b border-gray-100">Resultados</a>
             <a href="#contacto" class="block py-3 px-4 text-gray-700 hover:bg-brand-light">Contacto</a>
+            <a href="#testimonios" class="block py-3 px-4 text-gray-700 hover:bg-brand-light border-b border-gray-100">Opiniones</a>
         </div>
     </nav>
 
     <!-- HERO SECTION -->
-    <header id="inicio" class="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24 md:pt-28 pb-8 bg-gradient-to-br from-brand-dark via-slate-800 to-brand-dark">
+    <header id="inicio" class="relative w-full min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24 md:pt-28 pb-8 hero-with-bg">
         <!-- Overlay con gradiente -->
         <div class="absolute inset-0 z-10 bg-gradient-to-b from-brand-dark/50 to-brand-dark/80"></div>
 
